@@ -1,0 +1,47 @@
+Script started on Wed 03 May 2017 08:18:38 PM UTC
+training@hashicorp > echo "****************** LEASES ***********************"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kvault revoke -prefix postgresql/creds[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Ppsql -U postgresecho "****************** LEASES ***********************"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault status -address=http://127.0.0.1:8201
+Error checking seal status: Error making API request.
+
+URL: GET http://127.0.0.1:8201/v1/sys/seal-status
+Code: 400. Errors:
+
+* server is not yet initialized
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > vault status -address=http://127.0.0.1:8201[C[1P -address=http://127.0.0.1:8201[1P -address=http://127.0.0.1:8201[1P -address=http://127.0.0.1:8201[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ci -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cn -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ci -address=http://127.0.0.1:8201t -address=http://127.0.0.1:8201
+Unseal Key 1: W17NrC7rQSAma/JfBOaQmavF98w5Uk4De8SQP0xrSoQB
+Unseal Key 2: tHx72YDaTa1wPfjCulwaD3BYZ6BmwoVBSsXr2Ex+vq0C
+Unseal Key 3: n8qt4X3K/LHrfveZWX1dEr3DL5eF5xeep/uiu2YZXMkD
+Unseal Key 4: nXqq+ou9rJeReJtIa6NBeyD+L5km1+0dQZMLXNEujVgE
+Unseal Key 5: tsx8wnatHYsKO5QTiIIGZu1lZ67F8n/CrK1CP/tJbzwF
+Initial Root Token: 0b6d8606-f1ad-d7d6-bb80-e2ae3fe38418
+
+Vault initialized with 5 keys and a key threshold of 3. Please
+securely distribute the above keys. When the Vault is re-sealed,
+restarted, or stopped, you must provide at least 3 of these keys
+to unseal it again.
+
+Vault does not store the master key. Without at least 3 keys,
+your Vault will remain permanently sealed.
+training@hashicorp > vault init -address=http://127.0.0.1:8201[1P -address=http://127.0.0.1:8201[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cu -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cs -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce -address=http://127.0.0.1:8201a -address=http://127.0.0.1:8201l -address=http://127.0.0.1:8201[1@n
+Key (will be hidden): 
+Sealed: true
+Key Shares: 5
+Key Threshold: 3
+Unseal Progress: 1
+Unseal Nonce: 4f4cfe8e-723b-138b-502d-4922712dd30f
+training@hashicorp > vault unseal -address=http://127.0.0.1:8201
+Key (will be hidden): 
+Sealed: true
+Key Shares: 5
+Key Threshold: 3
+Unseal Progress: 2
+Unseal Nonce: 4f4cfe8e-723b-138b-502d-4922712dd30f
+training@hashicorp > vault unseal -address=http://127.0.0.1:8201
+Key (will be hidden): 
+Sealed: false
+Key Shares: 5
+Key Threshold: 3
+Unseal Progress: 0
+Unseal Nonce: 
+training@hashicorp > vault unseal -address=http://127.0.0.1:8201[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pinit

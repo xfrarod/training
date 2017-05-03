@@ -1,0 +1,1531 @@
+Script started on Wed 03 May 2017 07:48:17 PM UTC
+training@hashicorp > vault auth -methods
+Path    Type   Default TTL  Max TTL  Replication Behavior  Description
+token/  token  system       system   replicated            token based credentials
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > vault read sys/suth[K[K[K[Kauth
+Key   	Value
+---   	-----
+token/	map[config:map[default_lease_ttl:0 max_lease_ttl:0] description:token based credentials local:false type:token]
+
+training@hashicorp > vault auth-enable userpass
+Successfully enabled 'userpass' at 'userpass'!
+training@hashicorp > vault auth-enable userpass[7Pread sys/authauth -methods
+Path       Type      Default TTL  Max TTL  Replication Behavior  Description
+token/     token     system       system   replicated            token based credentials
+userpass/  userpass  system       system   replicated            
+training@hashicorp > [1@(reverse-i-search)`':[Cm': vault auth -methodso': vault mount postgresql[1@u[C[C[C[C[C[C[C[C[C[4Ptraining@hashicorp >[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[Kusr[Kes[Krpass
+Mount error: Error making API request.
+
+URL: POST http://127.0.0.1:8200/v1/sys/mounts/userpass
+Code: 400. Errors:
+
+* unknown backend type: userpass
+training@hashicorp > vault mount userpasstuserpassruserpassauserpassiuserpassnuserpassiuserpassnuserpassguserpass-userpass
+Mount error: Error making API request.
+
+URL: POST http://127.0.0.1:8200/v1/sys/mounts/training-userpass
+Code: 400. Errors:
+
+* unknown backend type: training-userpass
+training@hashicorp > vault mount training-userpass[C[C[C[C[Cutraining-userpassstraining-userpassetraining-userpassrtraining-userpassptraining-userpassatraining-userpassstraining-userpassstraining-userpass/training-userpass
+Mount error: Error making API request.
+
+URL: POST http://127.0.0.1:8200/v1/sys/mounts/userpass/training-userpass
+Code: 400. Errors:
+
+* unknown backend type: userpass/training-userpass
+training@hashicorp > vault mount userpass/training-userpass[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+training@hashicorp > 
+training@hashicorp > vault auth-enable -path=training/[K-userpass userpass
+Successfully enabled 'userpass' at 'training-userpass'!
+training@hashicorp > vault write /[Ku[Kauth/userpass/users/sethvargo password=training policies=base
+Success! Data written to: auth/userpass/users/sethvargo
+training@hashicorp > vault write auth/userpass/users/sethvargo password=training policies=base[1@(reverse-i-search)`':[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Ptraining@hashicorp >[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1@r[1@e[1@a[1@e[1P[1@d[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+Key     	Value
+---     	-----
+max_ttl 	0
+policies	base,default
+ttl     	0
+
+training@hashicorp > vault read auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=base[K[K[K[Kroot
+Success! Data written to: auth/userpass/users/sethvargo
+training@hashicorp > vault write auth/userpass/users/sethvargo password=training policies=root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32Pread auth/userpass/users/sethvargo 
+Key     	Value
+---     	-----
+max_ttl 	0
+policies	root
+ttl     	0
+
+training@hashicorp > cd /workstation/vault/
+training@hashicorp > ll
+total 28
+drwxr-xr-x 2 training training 4096 May  3 18:16 [0m[01;34m.[0m/
+drwxr-xr-x 5 root     root     4096 May  2 03:05 [01;34m..[0m/
+-rw-r--r-- 1 training training  185 May  2 03:05 app.rb
+-rw-r--r-- 1 training training  289 May  2 03:05 config.hcl
+-rw-r--r-- 1 training training  146 May  2 03:05 config.yml.tpl
+-rw-rw-r-- 1 training training   33 May  3 17:00 pwd.txt
+-rw-r--r-- 1 training training  147 May  2 03:05 readonly.sql
+training@hashicorp > vi [K[K[Kcat config.hcl 
+# Use the file storage - this will write encrypted data to disk.
+storage "file" {
+  path = "/workstation/vault/data"
+}
+
+# Listen on a different port (8201), which will allow us to run multiple
+# Vault's simultaneously.
+listener "tcp" {
+  address     = "127.0.0.1:8201"
+  tls_disable = 1
+}
+training@hashicorp > cat config.hcl ll[K[K[K
+training@hashicorp > 
+training@hashicorp > ll[K[Kpwd
+/workstation/vault
+training@hashicorp > cd -
+/home/training
+training@hashicorp > ll
+total 192
+drwxr-xr-x 4 training training  4096 May  3 19:48 [0m[01;34m.[0m/
+drwxr-xr-x 4 root     root      4096 May  2 03:04 [01;34m..[0m/
+-rw-rw-r-- 1 training training    66 May  3 17:40 base.hcl
+-rw------- 1 training training  9435 May  3 19:13 .bash_history
+-rw-r--r-- 1 training training   220 Apr  9  2014 .bash_logout
+-rw-r--r-- 1 training training  3666 May  2 03:04 .bashrc
+drwxrwxr-x 2 training training  4096 May  2 03:04 [01;34m.cache[0m/
+-rw-rw-r-- 1 training training    57 May  3 17:58 exercise.hcl
+-rw-rw-r-- 1 training training    16 May  2 22:53 exercise.tpl
+-rw-rw-r-- 1 training training   129 May  2 03:04 .gitconfig
+-rw-r--r-- 1 training training     4 May  2 22:53 out.txt
+-rw-r--r-- 1 training training   675 Apr  9  2014 .profile
+-rw------- 1 training training    24 May  3 18:36 .psql_history
+-rw-r--r-- 1 training training   146 May  2 03:05 .psqlrc
+drwx------ 2 training training  4096 May  2 03:04 [01;34m.ssh[0m/
+-rw-rw-r-- 1 training training 81920 May  3 18:36 vault1.log
+-rw-rw-r-- 1 training training  4096 May  3 19:54 vault2.log
+-rw-rw-r-- 1 training training 20480 May  3 17:06 vault.log
+-rw------- 1 training training     4 May  3 18:04 .vault-token
+-rw------- 1 training training  6230 May  3 18:16 .viminfo
+training@hashicorp > cp exercise.hcl exercise.[K2.hcl
+training@hashicorp > vi exercise2.hcl 
+[?1049h[?1h=[2;1H▽[6n[1;1H  [1;1H[1;38r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[38;1H"exercise2.hcl" 4L, 57C[>c[1;1Hpath "secret/*" {
+  capabilities = ["list", "delete"]
+}
+
+[94m~                                                                                                                                                                                    [6;1H~                                                                                                                                                                                    [7;1H~                                                                                                                                                                                    [8;1H~                                                                                                                                                                                    [9;1H~                                                                                                                                                                                    [10;1H~                                                                                                                                                                                    [11;1H~                                                                                                                                                                                    [12;1H~                                                                                                                                                                                    [13;1H~                                                                                                                                                                                    [14;1H~                                                                                                                                                                                    [15;1H~                                                                                                                                                                                    [16;1H~                                                                                                                                                                                    [17;1H~                                                                                                                                                                                    [18;1H~                                                                                                                                                                                    [19;1H~                                                                                                                                                                                    [20;1H~                                                                                                                                                                                    [21;1H~                                                                                                                                                                                    [22;1H~                                                                                                                                                                                    [23;1H~                                                                                                                                                                                    [24;1H~                                                                                                                                                                                    [25;1H~                                                                                                                                                                                    [26;1H~                                                                                                                                                                                    [27;1H~                                                                                                                                                                                    [28;1H~                                                                                                                                                                                    [29;1H~                                                                                                                                                                                    [30;1H~                                                                                                                                                                                    [31;1H~                                                                                                                                                                                    [32;1H~                                                                                                                                                                                    [33;1H~                                                                                                                                                                                    [34;1H~                                                                                                                                                                                    [35;1H~                                                                                                                                                                                    [36;1H~                                                                                                                                                                                    [37;1H~                                                                                                                                                                                    [m[38;164H1,1[11CAll[1;1H[?12l[?25h[?25l[38;166H2[1;2H[?12l[?25h[?25l[38;166H3[1;3H[?12l[?25h[?25l[38;166H4[1;4H[?12l[?25h[?25l[38;166H5[1;5H[?12l[?25h[?25l[38;166H6[1;6H[?12l[?25h[?25l[38;166H7[1;7H[?12l[?25h[?25l[38;166H8[1;8H[?12l[?25h[?25l[38;166H7[1;7H[?12l[?25h[?25lecret/*" {[1;17H[K[1;7H[?12l[?25h[?25lcret/*" {[1;16H[K[1;7H[?12l[?25h[?25lret/*" {[1;15H[K[1;7H[?12l[?25h[?25let/*" {[1;14H[K[1;7H[?12l[?25h[?25lt/*" {[1;13H[K[1;7H[?12l[?25h[?25l/*" {[1;12H[K[1;7H[?12l[?25h[?25l/t*" {[38;166H8[1;8H[?12l[?25h[?25l[38;1H[1m-- INSERT --[m[38;13H[K[38;164H2,1[11CTop[2;37r[2;1H[L[1;38r[38;164H[K[38;164H2,1[11CAll[2;1H[?12l[?25h[?25ls[38;166H2[2;2H[?12l[?25h[?25lt[38;166H3[2;3H[?12l[?25h[?25lg[38;166H4[2;4H[?12l[?25h[?25lr[38;166H5[2;5H[?12l[?25h[?25le[38;166H6[2;6H[?12l[?25h[?25ls[38;166H7[2;7H[?12l[?25h[?25ls[38;166H8[2;8H[?12l[?25h[38;1H[K[2;7H[?25l[38;164H2,7[11CAll[2;7H[?12l[?25h[?25l[38;1H1 line less; before #8  4 seconds ago[38;164H[K[2;37r[37;1H
+[1;38r[37;1H[94m~                                                                                                                                                                                    [m[38;1H[K[38;164H1,8[11CAll[1;8H[?12l[?25h[?25l[38;1H1 change; before #7  4 seconds ago[38;164H[K[1;8H*" {[1;12H[K[38;164H1,7[11CAll[1;7H[?12l[?25h[?25l[38;1H[1m-- INSERT --[m[38;13H[K[38;164H1,7[11CAll[1;7H[?12l[?25h[?25l[38;166H6[1;6H[?12l[?25h[?25l[38;166H7[1;7H[?12l[?25h[?25lp/*" {[38;166H8[1;8H[?12l[?25h[?25lo/*" {[38;166H9[1;9H[?12l[?25h[?25ls/*" {[38;166H10[1;10H[?12l[?25h[?25lt/*" {[38;167H1[1;11H[?12l[?25h[?25lg/*" {[38;167H2[1;12H[?12l[?25h[?25lr/*" {[38;167H3[1;13H[?12l[?25h[?25le/*" {[38;167H4[1;14H[?12l[?25h[?25ls/*" {[38;167H5[1;15H[?12l[?25h[?25ls/*" {[38;167H6[1;16H[?12l[?25h[?25l[38;164H2[2;16H[?12l[?25h[?25l[38;167H7[2;17H[?12l[?25h[?25l [106m[[16C][m[38;167H8[2;18H[?12l[?25h[?25l[38;164H[K[38;164H2,19[10CAll[2;19H[?12l[?25h[?25l[[16C][38;166H20[2;20H[?12l[?25h[?25l[106m[[16C][m[38;164H[K[38;164H2,19[10CAll[2;19H[?12l[?25h[?25l[[16C][38;164H1[1;19H[?12l[?25h[?25l[38;167H8[1;18H[?12l[?25h[?25l[38;167H7[1;17H[?12l[?25h[?25l[38;167H6[1;16H[?12l[?25h[38;1H[K[1;15H[?25l[38;164H1,15[10CAll[1;15H[?12l[?25h[?25l/*" {[1;20H[K[1;15H[?12l[?25h[?25l[38;164H2[2;15H[?12l[?25h[?25l[38;167H6[2;16H[?12l[?25h[?25l[38;167H7[2;17H[?12l[?25h[?25l [106m[[16C][m[38;167H8[2;18H[?12l[?25h[?25l[[16C][38;167H9[2;19H[?12l[?25h[?25l[38;166H20[2;20H[?12l[?25h[?25l[38;167H1[2;21H[?12l[?25h[?25l[38;167H0[2;20H[?12l[?25h[?25l[1;19H[106m{
+
+}[m[38;164H1,19[1;19H[?12l[?25h[?25l{
+
+}[38;167H8[1;18H[?12l[?25h[?25l[38;167H7[1;17H[?12l[?25h[?25l[38;167H6[1;16H[?12l[?25h[?25l[38;167H5[1;15H[?12l[?25h[?25l[38;167H4[1;14H[?12l[?25h[?25l[38;167H3[1;13H[?12l[?25h[?25l[38;167H2[1;12H[?12l[?25h[?25l[38;167H1[1;11H[?12l[?25h[?25l[38;167H0[1;10H[?12l[?25h[?25l[38;166H9 [1;9H[?12l[?25h[?25l[38;166H8[1;8H[?12l[?25h[?25l[38;166H7[1;7H[?12l[?25h[?25l/*" {[1;12H[K[1;7H[?12l[?25h[?25l[38;1H[1m-- INSERT --[m[38;164H[K[38;164H1,7[11CAll[1;7H[?12l[?25h[?25lpostgresql/roles/readonly/*" {[38;166H32[1;32H[?12l[?25h[?25l[38;164H2[2;32H[?12l[?25h[?25l[38;167H1[2;31H[?12l[?25h[?25l[38;167H0[2;30H[?12l[?25h[?25l[38;166H29[2;29H[?12l[?25h[?25l[38;167H8[2;28H[?12l[?25h[?25l[38;167H7[2;27H[?12l[?25h[?25l[38;167H6[2;26H[?12l[?25h[?25l[38;167H5[2;25H[?12l[?25h[?25l[38;167H4[2;24H[?12l[?25h[?25l[38;167H3[2;23H[?12l[?25h[?25l[38;167H2[2;22H[?12l[?25h[?25l[38;167H1[2;21H[?12l[?25h[?25l[38;167H0[2;20H[?12l[?25h[?25lclist", "delete"][38;167H1[2;21H[?12l[?25h[?25lwlist", "delete"][38;167H2[2;22H[?12l[?25h[38;1H[K[2;21H[?25l[38;164H2,21[10CAll[2;21H[?12l[?25h[?25l[38;167H0[2;20H[?12l[?25h[?25l[38;1H[1m-- INSERT --[m[38;164H[K[38;164H2,20[10CAll[2;20H", "delete"][2;32H[K[2;20H[?12l[?25h[?25lc", "delete"][38;167H1[2;21H[?12l[?25h[?25lr", "delete"][38;167H2[2;22H[?12l[?25h[?25le", "delete"][38;167H3[2;23H[?12l[?25h[?25la", "delete"][38;167H4[2;24H[?12l[?25h[?25lt", "delete"][38;167H5[2;25H[?12l[?25h[?25le", "delete"][38;167H6[2;26H[?12l[?25h[?25l[38;167H7[2;27H[?12l[?25h[?25lx, "delete"][38;167H8[2;28H[?12l[?25h[38;1H[K[2;27H[?25l[38;164H2,27[10CAll[2;27H[?12l[?25h[?25l, "delete"][2;38H[K[2;27H[?12l[?25h[?25l "delete"][2;37H[K[2;27H[?12l[?25h[?25l"delete"][2;36H[K[2;27H[?12l[?25h[?25ldelete"][2;35H[K[2;27H[?12l[?25h[?25lelete"][2;34H[K[2;27H[?12l[?25h[?25llete"][2;33H[K[2;27H[?12l[?25h[?25lete"][2;32H[K[2;27H[?12l[?25h[?25lte"][2;31H[K[2;27H[?12l[?25h[?25le"][2;30H[K[2;27H[?12l[?25h[?25l"][2;29H[K[2;27H[?12l[?25h[?25l[2;18H[106m[[8C][m[2;28H[K[2;27H[?12l[?25h[?25l[38;164H[K[38;1H:[?12l[?25hw[?25l[?12l[?25hq[?25l[?12l[?25h[?25l"exercise2.hcl" 4L, 68C written
+[?1l>[?12l[?25h[?1049ltraining@hashicorp > 
+training@hashicorp > vi exercise2.hcl cp exercise.hcl exercise2.hcl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[Kcd -[1Ppwdcat config.hcl ll[Kcd /workstation/vault/vault read auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32Pread auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32Pread auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=base[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pauth-enable -path=training-userpass userpass[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Pmount userpass/training-userpass[9Ptraining-userpass[9Puserpass[1Pauth -methods-enable userpass[7Pread sys/authauth -methodsecho "****************** LEASES ***********************"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kvault revoke -prefix postgresql/creds[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Ppsql -U postgresfor i in {1..20}; do vault read postgresql/creds/readonly; done[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kfor i in {1..20}; do vault read postgresql/creds/readonly; done[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kvault revoke postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kvault renew postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpsql -U postgres[Kvault renew postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdate[Kpsql -U postgresvault read postgresql/creds/readonly [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite postgresql/roles/readonly sql=@readonly.sql[1@config[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ci readonly.sql [Kll[Kcd /workstation/vault/vault read postgresql/config/leasewrite postgresql/config/lease lease=1h lease_max=24h[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[19Pread postgresql/config/connection[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite postgresql/config/connection connection_url="postgresql://postgres@localhost/myapp"s@localhost/myapp"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[52Ppath-help postgresql/config/connection[1Ps/config/connectionql/[K[5Pmount postgresqlecho "****************** DINAMIC SECRETS ***********************"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cvault auth root[Ki exercise.hcl cp base.hcl exercise.hcl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[Kvault write secret/training_foo bar=21[9P[C[C[C[C[C[C[C[C[C[14Ppoliciesauth 74d9289a-1bbc-fa06-12d3-00db8bdd8a40[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[16Ptoken-create -policy=base[12Ppolicies baseread sys/policy/base[7Ppolicies baseread sys/policy/base[12Ppolicies[1Pliciesolicy-write base ./base.hcl [C[1P[1P[1P[1P[1@c[1@o[1@n[1@t[1@r[1@a[1@c[1@t[1@o[1@r[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[Kexc[Kw[Kercise2.hcl 
+Policy 'contractor' written.
+training@hashicorp > 
+training@hashicorp > vault policy-write contractor ./exercise2.hcl [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[29Pi [C[C[C[C[C[C[C[C[C[C[C[C[C[Ccp exercise.hcl exercise2.hcl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[Kcd -[1Ppwdcat config.hcl ll[Kcd /workstation/vault/vault read auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=root[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@f[1@r[1@a[1@n[1@c[1@i[1@s[1@c[1@o[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P policies=root[1P policies=root[1P policies=root[1P policies=root[1P policies=root[1P policies=root[1P policies=root[1P policies=roott policies=rootr policies=roota policies=rooti policies=rootn policies=rooti policies=rootn policies=rootg policies=root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[Kcontractor
+Success! Data written to: auth/userpass/users/francisco
+training@hashicorp > vault auth francisco
+Error validating token: Error making API request.
+
+URL: GET http://127.0.0.1:8200/v1/auth/token/lookup-self
+Code: 403. Errors:
+
+* permission denied
+training@hashicorp > vault auth franciscowrite auth/userpass/users/francisco password=training policies=contractor[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[33Ppolicy-write contractor ./exercise2.hcl [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[29Pi [C[C[C[C[C[C[C[C[C[C[C[C[C[Ccp exercise.hcl exercise2.hcl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cll[Kcd -[1Ppwdcat config.hcl ll[Kcd /workstation/vault/vault read auth/userpass/users/sethvargo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cwrite auth/userpass/users/sethvargo password=training policies=root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@s[1@a[1@n[1@d[1@y[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[Kcontractor
+Success! Data written to: auth/userpass/users/sandy
+training@hashicorp > vi exercise2.hcl 
+[?1049h[?1h=[2;1H▽[6n[1;1H  [1;1H[1;38r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[38;1H"exercise2.hcl" 4L, 68C[>c[1;1Hpath "postgresql/roles/readonly/*" {
+  capabilities = ["create"]
+}
+
+[94m~                                                                                                                                                                                    [6;1H~                                                                                                                                                                                    [7;1H~                                                                                                                                                                                    [8;1H~                                                                                                                                                                                    [9;1H~                                                                                                                                                                                    [10;1H~                                                                                                                                                                                    [11;1H~                                                                                                                                                                                    [12;1H~                                                                                                                                                                                    [13;1H~                                                                                                                                                                                    [14;1H~                                                                                                                                                                                    [15;1H~                                                                                                                                                                                    [16;1H~                                                                                                                                                                                    [17;1H~                                                                                                                                                                                    [18;1H~                                                                                                                                                                                    [19;1H~                                                                                                                                                                                    [20;1H~                                                                                                                                                                                    [21;1H~                                                                                                                                                                                    [22;1H~                                                                                                                                                                                    [23;1H~                                                                                                                                                                                    [24;1H~                                                                                                                                                                                    [25;1H~                                                                                                                                                                                    [26;1H~                                                                                                                                                                                    [27;1H~                                                                                                                                                                                    [28;1H~                                                                                                                                                                                    [29;1H~                                                                                                                                                                                    [30;1H~                                                                                                                                                                                    [31;1H~                                                                                                                                                                                    [32;1H~                                                                                                                                                                                    [33;1H~                                                                                                                                                                                    [34;1H~                                                                                                                                                                                    [35;1H~                                                                                                                                                                                    [36;1H~                                                                                                                                                                                    [37;1H~                                                                                                                                                                                    [m[38;164H1,1[11CAll[1;1H[?12l[?25h[?25l[38;164H2[2;1H[?12l[?25h[?25l[38;164H1[1;1H[?12l[?25h[?25l[38;166H2[1;2H[?12l[?25h[?25l[38;166H3[1;3H[?12l[?25h[?25l[38;166H4[1;4H[?12l[?25h[?25l[38;166H5[1;5H[?12l[?25h[?25l[38;166H6[1;6H[?12l[?25h[?25l[38;166H7[1;7H[?12l[?25h[?25l[38;166H8[1;8H[?12l[?25h[?25l[38;166H9[1;9H[?12l[?25h[?25l[38;166H10[1;10H[?12l[?25h[?25l[38;167H1[1;11H[?12l[?25h[?25l[38;167H2[1;12H[?12l[?25h[?25l[38;167H3[1;13H[?12l[?25h[?25l[38;167H4[1;14H[?12l[?25h[?25l[38;167H5[1;15H[?12l[?25h[?25l[38;167H6[1;16H[?12l[?25h[?25l[38;167H7[1;17H[?12l[?25h[?25l[38;167H8[1;18H[?12l[?25h[?25l[38;167H9[1;19H[?12l[?25h[?25l[38;167H8[1;18H[?12l[?25h[?25l[38;167H9[1;19H[?12l[?25h[?25l[38;166H20[1;20H[?12l[?25h[?25l[38;167H1[1;21H[?12l[?25h[?25l[38;167H2[1;22H[?12l[?25h[?25l[38;167H3[1;23H[?12l[?25h[?25l[38;167H2[1;22H[?12l[?25h[?25l[38;167H1[1;21H[?12l[?25h[?25l[38;167H0[1;20H[?12l[?25h[?25l[38;166H19[1;19H[?12l[?25h[?25l[38;167H8[1;18H[?12l[?25h[?25l[38;1H[1m-- INSERT --[m[38;13H[K[38;164H1,18[10CAll[1;18H/readonly/*" {[1;32H[K[1;18H[?12l[?25h[?25lu/readonly/*" {[38;167H9[1;19H[?12l[?25h[?25ls/readonly/*" {[38;166H20[1;20H[?12l[?25h[?25le/readonly/*" {[38;167H1[1;21H[?12l[?25h[?25lr/readonly/*" {[38;167H2[1;22H[?12l[?25h[?25lp/readonly/*" {[38;167H3[1;23H[?12l[?25h[?25la/readonly/*" {[38;167H4[1;24H[?12l[?25h[?25ls/readonly/*" {[38;167H5[1;25H[?12l[?25h[?25ls/readonly/*" {[38;167H6[1;26H[?12l[?25h[38;1H[K[1;25H[?25l[38;164H1,25[10CAll[1;25H[?12l[?25h[?25l[38;164H[K[38;1H:[?12l[?25hw[?25l[?12l[?25hq[?25l[?12l[?25h[?25l"exercise2.hcl" 4L, 71C written
+[?1l>[?12l[?25h[?1049ltraining@hashicorp > vi exercise2.hcl ault write auth/userpass/users/sandy password=training policies=contractor[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cauth francisco[Kwrite auth/userpass/users/francisco password=training policies=contractor[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[33Ppolicy-write contractor ./exercise2.hcl 
+Policy 'contractor' written.
+training@hashicorp > auth root
+^C
+training@hashicorp > vault auth root
+Successfully authenticated! You are now logged in.
+token: root
+token_duration: 0
+token_policies: [root]
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > [1@(reverse-i-search)`':[C[47@e': vault policy-write contractor ./exercise2.hcl[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cn': vault auth-enable -path=training-userpass userpass[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@a[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4Ptraining@hashicorp >[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[C[C[C[C[C[C[C[K[K[K[K[Kfile
+Usage: vault auth-enable [options] type
+
+  Enable a new auth provider.
+
+  This command enables a new auth provider. An auth provider is responsible
+  for authenticating a user and assigning them policies with which they can
+  access Vault.
+
+General Options:
+
+  -address=addr           The address of the Vault server.
+                          Overrides the VAULT_ADDR environment variable if set.
+
+  -ca-cert=path           Path to a PEM encoded CA cert file to use to
+                          verify the Vault server SSL certificate.
+                          Overrides the VAULT_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert files
+                          to verify the Vault server SSL certificate. If both
+                          -ca-cert and -ca-path are specified, -ca-cert is used.
+                          Overrides the VAULT_CAPATH environment variable if set.
+
+  -client-cert=path       Path to a PEM encoded client certificate for TLS
+                          authentication to the Vault server. Must also specify
+                          -client-key. Overrides the VAULT_CLIENT_CERT
+                          environment variable if set.
+
+  -client-key=path        Path to an unencrypted PEM encoded private key
+                          matching the client certificate from -client-cert.
+                          Overrides the VAULT_CLIENT_KEY environment variable
+                          if set.
+
+  -tls-skip-verify        Do not verify TLS certificate. This is highly
+                          not recommended. Verification will also be skipped
+                          if VAULT_SKIP_VERIFY is set.
+
+  -wrap-ttl=""            Indicates that the response should be wrapped in a
+                          cubbyhole token with the requested TTL. The response
+                          can be fetched by calling the "sys/wrapping/unwrap"
+                          endpoint, passing in the wrappping token's ID. This
+                          is a numeric string with an optional suffix
+                          "s", "m", or "h"; if no suffix is specified it will
+                          be parsed as seconds. May also be specified via
+                          VAULT_WRAP_TTL.
+
+Auth Enable Options:
+
+  -description=<desc>     Human-friendly description of the purpose for the
+                          auth provider. This shows up in the auth -methods command.
+
+  -path=<path>            Mount point for the auth provider. This defaults
+                          to the type of the mount. This will make the auth
+                          provider available at "/auth/<path>"
+
+  -local                  Mark the mount as a local mount. Local mounts
+                          are not replicated nor (if a secondary)
+                          removed by replication.
+
+auth-enable expects one argument: the type to enable.
+training@hashicorp > vault auth-enable -path=filef-path=filei-path=filel-path=filee-path=file -path=file[C[C[C[C[C[C[C[Cfpath=fileipath=filelpath=fileepath=file_path=file[C[C[C[C[C[C[C[C[C[K[K[K[K/workstation/vault/audith.log
+Usage: vault auth-enable [options] type
+
+  Enable a new auth provider.
+
+  This command enables a new auth provider. An auth provider is responsible
+  for authenticating a user and assigning them policies with which they can
+  access Vault.
+
+General Options:
+
+  -address=addr           The address of the Vault server.
+                          Overrides the VAULT_ADDR environment variable if set.
+
+  -ca-cert=path           Path to a PEM encoded CA cert file to use to
+                          verify the Vault server SSL certificate.
+                          Overrides the VAULT_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert files
+                          to verify the Vault server SSL certificate. If both
+                          -ca-cert and -ca-path are specified, -ca-cert is used.
+                          Overrides the VAULT_CAPATH environment variable if set.
+
+  -client-cert=path       Path to a PEM encoded client certificate for TLS
+                          authentication to the Vault server. Must also specify
+                          -client-key. Overrides the VAULT_CLIENT_CERT
+                          environment variable if set.
+
+  -client-key=path        Path to an unencrypted PEM encoded private key
+                          matching the client certificate from -client-cert.
+                          Overrides the VAULT_CLIENT_KEY environment variable
+                          if set.
+
+  -tls-skip-verify        Do not verify TLS certificate. This is highly
+                          not recommended. Verification will also be skipped
+                          if VAULT_SKIP_VERIFY is set.
+
+  -wrap-ttl=""            Indicates that the response should be wrapped in a
+                          cubbyhole token with the requested TTL. The response
+                          can be fetched by calling the "sys/wrapping/unwrap"
+                          endpoint, passing in the wrappping token's ID. This
+                          is a numeric string with an optional suffix
+                          "s", "m", or "h"; if no suffix is specified it will
+                          be parsed as seconds. May also be specified via
+                          VAULT_WRAP_TTL.
+
+Auth Enable Options:
+
+  -description=<desc>     Human-friendly description of the purpose for the
+                          auth provider. This shows up in the auth -methods command.
+
+  -path=<path>            Mount point for the auth provider. This defaults
+                          to the type of the mount. This will make the auth
+                          provider available at "/auth/<path>"
+
+  -local                  Mark the mount as a local mount. Local mounts
+                          are not replicated nor (if a secondary)
+                          removed by replication.
+
+auth-enable expects one argument: the type to enable.
+training@hashicorp > vault auth-enable file -file_path=/workstation/vault/audith.log[1Pfile_path=/workstation/vault/audith.log
+Usage: vault auth-enable [options] type
+
+  Enable a new auth provider.
+
+  This command enables a new auth provider. An auth provider is responsible
+  for authenticating a user and assigning them policies with which they can
+  access Vault.
+
+General Options:
+
+  -address=addr           The address of the Vault server.
+                          Overrides the VAULT_ADDR environment variable if set.
+
+  -ca-cert=path           Path to a PEM encoded CA cert file to use to
+                          verify the Vault server SSL certificate.
+                          Overrides the VAULT_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert files
+                          to verify the Vault server SSL certificate. If both
+                          -ca-cert and -ca-path are specified, -ca-cert is used.
+                          Overrides the VAULT_CAPATH environment variable if set.
+
+  -client-cert=path       Path to a PEM encoded client certificate for TLS
+                          authentication to the Vault server. Must also specify
+                          -client-key. Overrides the VAULT_CLIENT_CERT
+                          environment variable if set.
+
+  -client-key=path        Path to an unencrypted PEM encoded private key
+                          matching the client certificate from -client-cert.
+                          Overrides the VAULT_CLIENT_KEY environment variable
+                          if set.
+
+  -tls-skip-verify        Do not verify TLS certificate. This is highly
+                          not recommended. Verification will also be skipped
+                          if VAULT_SKIP_VERIFY is set.
+
+  -wrap-ttl=""            Indicates that the response should be wrapped in a
+                          cubbyhole token with the requested TTL. The response
+                          can be fetched by calling the "sys/wrapping/unwrap"
+                          endpoint, passing in the wrappping token's ID. This
+                          is a numeric string with an optional suffix
+                          "s", "m", or "h"; if no suffix is specified it will
+                          be parsed as seconds. May also be specified via
+                          VAULT_WRAP_TTL.
+
+Auth Enable Options:
+
+  -description=<desc>     Human-friendly description of the purpose for the
+                          auth provider. This shows up in the auth -methods command.
+
+  -path=<path>            Mount point for the auth provider. This defaults
+                          to the type of the mount. This will make the auth
+                          provider available at "/auth/<path>"
+
+  -local                  Mark the mount as a local mount. Local mounts
+                          are not replicated nor (if a secondary)
+                          removed by replication.
+
+auth-enable expects one argument: the type to enable.
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > vault auth-enable file file_path=/workstation/vault/audith.log[C[1P[1P[1P[1@u[1@d[1@i[1@t
+Successfully enabled audit backend 'file' with path 'file'!
+training@hashicorp > pwd
+/home/training
+training@hashicorp > cat /workstation/vault/audith.log
+cat: /workstation/vault/audith.log: Permission denied
+training@hashicorp > si[Kudo training@hashicorp > vi ex.nomad
+-text..."   3 hours ago         Up 3 hours          5678/tcp                                                             mystifying_tesla
+training@hashicorp > docker ps
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                                                                NAMES
+a4920345bfa4        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:42938->42938/tcp, 10.1.1.194:42938->42938/udp   server-ae3bb5af-be5d-a500-ff66-7b58112a63e8
+9923b569c79d        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:8080->8080/tcp, 10.1.1.194:8080->8080/udp       server-a7dba77d-f839-f426-c11e-32c188c9a13b
+13f9b612d8e0        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          10.1.1.194:80->80/tcp, 10.1.1.194:80->80/udp, 5678/tcp               server-fabcbf96-11f4-7d33-6757-abcd263b27ed
+8c9139119453 sudo: training@hashicorp: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > docker ps
+training@hashicorp: command not found
+training@hashicorp > CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                                                                 NAMES
+CONTAINER: command not found
+training@hashicorp > a4920345bfa4        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:42938->42938/tcp, 10.1.1.194:429 38->42938/udp   server-ae3bb5af-be5d-a500-ff66-7b58112a63e8
+bash: 42938/tcp,: No such file or directory
+training@hashicorp > 9923b569c79d        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:8080->8080/tcp, 10.1.1.194:8080- >8080/udp       server-a7dba77d-f839-f426-c11e-32c188c9a13b
+bash: 8080/tcp,: No such file or directory
+training@hashicorp > 13f9b612d8e0        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          10.1.1.194:80->80/tcp, 10.1.1.194:80->80/udp, 5678/tc p               server-fabcbf96-11f4-7d33-6757-abcd263b27ed
+bash: 80/tcp,: No such file or directory
+training@hashicorp > 8c9139119453        hashicorp/http-echo   "/http-echo '-text..."   3 hours ago         Up 3 hours          5678/tcp                                                              mystifying_tesla
+8c9139119453: command not found
+training@hashicorp > training@hashicorp > docker ps
+training@hashicorp: command not found
+training@hashicorp > CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                                                                 NAMES
+CONTAINER: command not found
+training@hashicorp > a4920345bfa4        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:42938->42938/tcp, 10.1.1.194:429 38->42938/udp   server-ae3bb5af-be5d-a500-ff66-7b58112a63e8
+bash: 42938/tcp,: No such file or directory
+training@hashicorp > 9923b569c79d        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          5678/tcp, 10.1.1.194:8080->8080/tcp, 10.1.1.194:8080- >8080/udp       server-a7dba77d-f839-f426-c11e-32c188c9a13b
+bash: 8080/tcp,: No such file or directory
+training@hashicorp > 13f9b612d8e0        50a1a1d3781e          "/http-echo -liste..."   3 hours ago         Up 3 hours          10.1.1.194:80->80/tcp, 10.1.1.194:80->80/udp, 5678/tc p               server-fabcbf96-11f4-7d33-6757-abcd263b27ed
+bash: 80/tcp,: No such file or directory
+training@hashicorp > 8c9139119453        hashicorp/http-echo   "/http-echo '-text..."   3 hours ago         Up 3 hours          5678/tcp                                                              mystifying_tesla
+8c9139119453: command not found
+training@hashicorp > training@hashicorp > vi ex.nomad
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vi html_content.tpl
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vi ex.nomad
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vi ex.nomad
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > cat exercise.tpl
+training@hashicorp: command not found
+training@hashicorp > {{ key "foo" }}
+{{: command not found
+training@hashicorp > training@hashicorp > vi ex.nomad
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vi base.hcl
+training@hashicorp: command not found
+training@hashicorp > base.hcl       .bash_logout   .cache/        .gitconfig     .profile       .ssh/          vault.log      .viminfo
+base.hcl: command not found
+training@hashicorp > .bash_history  .bashrc        exercise.tpl   out.txt        .psqlrc        vault1.log     .vault-token
+.bash_history: command not found
+training@hashicorp > training@hashicorp > vi base.hcl
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vault policy-write base ./base.hcl
+training@hashicorp: command not found
+training@hashicorp > Policy 'base' written.
+Policy: command not found
+training@hashicorp > training@hashicorp > vault plicies
+training@hashicorp: command not found
+training@hashicorp > usage: vault [-version] [-help] <command> [args]
+bash: command: No such file or directory
+training@hashicorp > 
+training@hashicorp > Common commands:
+Common: command not found
+training@hashicorp >     delete           Delete operation on secrets in Vault
+delete: command not found
+training@hashicorp >     path-help        Look up the help for a path
+path-help: command not found
+training@hashicorp >     read             Read data or secrets from Vault
+1 training training   220 Apr  9  2014 .bash_logout
+-rw-r--r-- 1 training training  3666 May  2 03:04 .bashrc
+drwxrwxr-x 2 training training  4096 May  2 03:04 .cache/
+-rw-rw-r-- 1 training training    16 May  2 22:53 exercise.tpl
+-rw-rw-r-- 1 training training   129 May  2 03:04 .gitconfig
+-rw-r--r-- 1 training training     4 May  2 22:53 out.txt
+-rw-r--r-- 1 training training   675 Apr  9  2014 .profile
+-rw-r--r-- 1 training training   146 May  2 03:05 .psqlrc
+drwx------ 2 training training  4096 May  2 03:04 .ssh/
+-rw-rw-r-- 1 training training 28672 May  3 17:43 vault1.log
+-rw-rw-r-- 1 training training 20480 May  3 17:06 vault.log
+-rw------- 1 training training    36 May  3 17:47 .vault-token
+-rw------- 1 training training  6116 May  3 17:42 .viminfo
+training@hashicorp > cp base.hcl exercise.hcl
+training@hashicorp > vi exercise.hcl
+training@hashicorp >
+training@hashicorp >
+training@hashicorp > vault auth root
+Successfully authenticated! You are now logged in.
+token: root
+token_duration: 0
+token_policies: [root]
+training@hashicorp >
+training@hashicorp >
+training@hashicorp >
+training@hashicorp > echo "****************** DINAMIC SECRETS ***********************"
+****************** DINAMIC SECRETS ***********************
+training@hashicorp >
+training@hashicorp >
+training@hashicorp >
+training@hashicorp > vault mount postgresql
+Successfully mounted 'postgresql' at 'postgresql'!
+training@hashicorp > vault path-help postgresql/
+## DESCRIPTION
+
+The PostgreSQL backend dynamically generates database users.
+
+After mounting this backend, configure it using the endpoints within
+the "config/" path.
+
+## PATHS
+
+The following paths are supported by this backend. To view help for
+any of the paths below, use the help command with any route matching
+the path pattern. Note that depending on the policy of your auth token,
+you may or may not be able to access certain paths.
+
+    ^config/connection$
+        Configure the connection string to talk to PostgreSQL.
+
+    ^config/lease$
+        Configure the default lease information for generated credentials.
+
+    ^creds/(?P<name>\w(([\w-.]+)?\w)?)$
+        Request database credentials for a certain role.
+
+    ^roles/(?P<name>\w(([\w-.]+)?\w)?)$
+        Manage the roles that can be created with this backend.
+
+    ^roles/?$
+        Manage the roles that can be created with this backend.
+training@hashicorp >
+training@hashicorp >
+training@hashicorp >
+training@hashicorp > vault path-help postgress/config/connection
+Error reading help: Error making API request.
+
+URL: GET http://127.0.0.1:8200/v1/postgress/config/connection?help=1
+Code: 404. Errors:
+
+* no handler for route 'postgress/config/connection/'
+training@hashicorp > vault path-help postgresql/config/connection
+Request:        config/connection
+Matching Route: ^config/connection$
+
+Configure the connection string to talk to PostgreSQL.
+
+## PARAMETERS
+
+    connection_url (string)
+        DB connection string
+
+    max_idle_connections (int)
+        Maximum number of idle connections to the database;
+        a zero uses the value of max_open_connections
+        and a negative value disables idle connections.
+        If larger than max_open_connections it will be
+        reduced to the same size.
+
+    max_open_connections (int)
+        Maximum number of open connections to the database;
+        a zero uses the default value of two and a
+        negative value means unlimited
+
+    value (string)
+        DB connection string. Use 'connection_url' instead.
+        This will be deprecated.
+
+    verify_connection (bool)
+        If set, connection_url is verified by actually connecting to the database
+
+## DESCRIPTION
+
+This path configures the connection string used to connect to PostgreSQL.
+The value of the string can be a URL, or a PG style string in the
+format of "user=foo host=bar" etc.
+
+The URL looks like:
+"postgresql://user:pass@host:port/dbname"
+
+When configuring the connection string, the backend will verify its validity.
+training@hashicorp > vault write postgresql/config/connection \
+> connection_url="postgresql://postgress@localhost/myapp"
+Error writing data to postgresql/config/connection: Error training@hashicorp > -rw-r--r-- 1 training training  3666 May  2 03:04 .bashrc
+-rw-r--r--: command not found
+training@hashicorp > drwxrwxr-x 2 training training  4096 May  2 03:04 .cache/
+drwxrwxr-x: command not found
+training@hashicorp > -rw-rw-r-- 1 training training    16 May  2 22:53 exercise.tpl
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training   129 May  2 03:04 .gitconfig
+-rw-rw-r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training     4 May  2 22:53 out.txt
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training   675 Apr  9  2014 .profile
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training   146 May  2 03:05 .psqlrc
+-rw-r--r--: command not found
+training@hashicorp > drwx------ 2 training training  4096 May  2 03:04 .ssh/
+drwx------: command not found
+training@hashicorp > -rw-rw-r-- 1 training training 28672 May  3 17:43 vault1.log
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training 20480 May  3 17:06 vault.log
+-rw-rw-r--: command not found
+training@hashicorp > -rw------- 1 training training    36 May  3 17:47 .vault-token
+-rw-------: command not found
+training@hashicorp > -rw------- 1 training training  6116 May  3 17:42 .viminfo
+-rw-------: command not found
+training@hashicorp > training@hashicorp > cp base.hcl exercise.hcl
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vi exercise.hcl
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault auth root
+training@hashicorp: command not found
+training@hashicorp > Successfully authenticated! You are now logged in.
+Successfully: command not found
+training@hashicorp > token: root
+No command 'token:' found, did you mean:
+ Command 'tokens' from package 'openafs-client' (universe)
+token:: command not found
+training@hashicorp > token_duration: 0
+token_duration:: command not found
+training@hashicorp > token_policies: [root]
+token_policies:: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > echo "****************** DINAMIC SECRETS ***********************"
+training@hashicorp: command not found
+training@hashicorp > ****************** DINAMIC SECRETS ***********************
+base.hcl: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault mount postgresql
+training@hashicorp: command not found
+training@hashicorp > Successfully mounted 'postgresql' at 'postgresql'!
+Successfully: command not found
+training@hashicorp > training@hashicorp > vault path-help postgresql/
+training@hashicorp: command not found
+training@hashicorp > ## DESCRIPTION
+training@hashicorp > 
+training@hashicorp > The PostgreSQL backend dynamically generates database users.
+No command 'The' found, did you mean:
+ Command 'the' from package 'the' (universe)
+The: command not found
+training@hashicorp > 
+training@hashicorp > After mounting this backend, configure it using the endpoints within
+After: command not found
+training@hashicorp > the "config/" path.
+The program 'the' is currently not installed. You can install it by typing:
+sudo apt-get install the
+training@hashicorp > 
+training@hashicorp > ## PATHS
+training@hashicorp > 
+training@hashicorp > The following paths are supported by this backend. To view help for
+No command 'The' found, did you mean:
+ Command 'the' from package 'the' (universe)
+The: command not found
+training@hashicorp > any of the paths below, use the help command with any route matching
+No command 'any' found, did you mean:
+ Command 'an' from package 'an' (universe)
+ Command 'ant' from package 'ant' (main)
+ Command 'asy' from package 'asymptote' (universe)
+ Command 'and' from package 'and' (universe)
+any: command not found
+training@hashicorp > the path pattern. Note that depending on the policy of your auth token,
+The program 'the' is currently not installed. You can install it by typing:
+sudo apt-get install the
+training@hashicorp > you may or may not be able to access certain paths.
+you: command not found
+training@hashicorp > 
+training@hashicorp >     ^config/connection$
+bash: ^config/connection$: No such file or directory
+training@hashicorp >         Configure the connection string to talk to PostgreSQL.
+Configure: command not found
+training@hashicorp > 
+training@hashicorp >     ^config/lease$
+bash: ^config/lease$: No such file or directory
+training@hashicorp >         Configure the default lease information for generated credentials.
+Configure: command not found
+training@hashicorp > 
+training@hashicorp >     ^creds/(?P<name>\w(([\w-.]+)?\w)?)$
+bash: syntax error near unexpected token `?P'
+training@hashicorp >         Request database credentials for a certain role.
+Request: command not found
+training@hashicorp > 
+training@hashicorp >     ^roles/(?P<name>\w(([\w-.]+)?\w)?)$
+bash: syntax error near unexpected token `?P'
+training@hashicorp >         Manage the roles that can be created with this backend.
+Manage: command not found
+training@hashicorp > 
+training@hashicorp >     ^roles/?$
+bash: ^roles/?$: No such file or directory
+training@hashicorp >         Manage the roles that can be created with this backend.
+Manage: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault path-help postgress/config/connection
+_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert fitraining@hashicorp: command not found
+training@hashicorp > Error reading help: Error making API request.
+Error: command not found
+training@hashicorp > 
+training@hashicorp > URL: GET http://127.0.0.1:8200/v1/postgress/config/connection?help=1
+URL:: command not found
+training@hashicorp > Code: 404. Errors:
+Code:: command not found
+training@hashicorp > 
+training@hashicorp > * no handler for route 'postgress/config/connection/'
+base.hcl: command not found
+training@hashicorp > training@hashicorp > vault path-help postgresql/config/connection
+training@hashicorp: command not found
+training@hashicorp > Request:        config/connection
+Request:: command not found
+training@hashicorp > Matching Route: ^config/connection$
+Matching: command not found
+training@hashicorp > 
+training@hashicorp > Configure the connection string to talk to PostgreSQL.
+Configure: command not found
+training@hashicorp > 
+training@hashicorp > ## PARAMETERS
+training@hashicorp > 
+training@hashicorp >     connection_url (string)
+bash: syntax error near unexpected token `string'
+training@hashicorp >         DB connection string
+DB: command not found
+training@hashicorp > 
+training@hashicorp >     max_idle_connections (int)
+bash: syntax error near unexpected token `int'
+training@hashicorp >         Maximum number of idle connections to the database;
+Maximum: command not found
+training@hashicorp >         a zero uses the value of max_open_connections
+a: command not found
+training@hashicorp >         and a negative value disables idle connections.
+The program 'and' is currently not installed. You can install it by typing:
+sudo apt-get install and
+training@hashicorp >         If larger than max_open_connections it will be
+If: command not found
+training@hashicorp >         reduced to the same size.
+reduced: command not found
+training@hashicorp > 
+training@hashicorp >     max_open_connections (int)
+bash: syntax error near unexpected token `int'
+training@hashicorp >         Maximum number of open connections to the database;
+Maximum: command not found
+training@hashicorp >         a zero uses the default value of two and a
+a: command not found
+training@hashicorp >         negative value means unlimited
+negative: command not found
+training@hashicorp > 
+training@hashicorp >     value (string)
+bash: syntax error near unexpected token `string'
+training@hashicorp >         DB connection string. Use 'connection_url' instead.
+DB: command not found
+training@hashicorp >         This will be deprecated.
+This: command not found
+training@hashicorp > 
+training@hashicorp >     verify_connection (bool)
+bash: syntax error near unexpected token `bool'
+training@hashicorp >         If set, connection_url is verified by actually connecting to the database
+If: command not found
+training@hashicorp > 
+training@hashicorp > ## DESCRIPTION
+training@hashicorp > 
+training@hashicorp > This path configures the connection string used to connect to PostgreSQL.
+This: command not found
+training@hashicorp > The value of the string can be a URL, or a PG style string in the
+No command 'The' found, did you mean:
+ Command 'the' from package 'the' (universe)
+The: command not found
+training@hashicorp > format of "user=foo host=bar" etc.
+No command 'format' found, did you mean:
+ Command 'mformat' from package 'mtools' (main)
+ Command 'hformat' from package 'hfsutils' (main)
+format: command not found
+training@hashicorp > 
+training@hashicorp > The URL looks like:
+No command 'The' found, did you mean:
+ Command 'the' from package 'the' (universe)
+The: command not found
+training@hashicorp > "postgresql://user:pass@host:port/dbname"
+bash: postgresql://user:pass@host:port/dbname: No such file or directory
+training@hashicorp > 
+training@hashicorp > When configuring the connection string, the backend will verify its validity.
+No command 'When' found, did you mean:
+ Command 'when' from package 'when' (universe)
+When: command not found
+training@hashicorp > training@hashicorp > vault write postgresql/config/connection \
+> > connection_url="postgresql://postgress@localhost/myapp"
+bash: connection_url=postgresql://postgress@localhost/myapp: No such file or directory
+training@hashicorp > Error writing data to postgresql/config/connection: Error making API request.
+Error: command not found
+training@hashicorp > 
+training@hashicorp > URL: PUT http://127.0.0.1:8200/v1/postgresql/config/connection
+URL:: command not found
+training@hashicorp > Code: 400. Errors:
+Code:: command not found
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > ▽
+▽: command not found
+training@hashicorp > * Error validating connection info: pq: role "postgress" does not exist
+base.hcl: command not found
+training@hashicorp > training@hashicorp > vault write postgresql/config/connection connection_url="postgresql://postgres@localhost/myapp"
+training@hashicorp: command not found
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > The following warnings were returned from the Vault server:
+ql/config/readonly: Error making API requestNo command 'The' found, did you mean:
+ Command 'the' from package 'the' (universe)
+The: command not found
+training@hashicorp > * Read access to this endpoint should be controlled via ACLs as it will return the connection string or URL as it is, including passwords, if any.
+base.hcl: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault read postgresql/config/connection
+training@hashicorp: command not found
+training@hashicorp > Key                   Value
+No command 'Key' found, did you mean:
+ Command 'key' from package 'donkey' (universe)
+Key: command not found
+training@hashicorp > ---                   -----
+---: command not found
+training@hashicorp > connection_url        postgresql://postgres@localhost/myapp
+connection_url: command not found
+training@hashicorp > max_idle_connections  2
+max_idle_connections: command not found
+training@hashicorp > max_open_connections  2
+max_open_connections: command not found
+training@hashicorp > value
+No command 'value' found, did you mean:
+ Command 'pvalue' from package 'radiance' (universe)
+value: command not found
+training@hashicorp > 
+training@hashicorp > training@hashicorp > vault write postgresql/config/lease \
+> > lease=1h \
+> > lease_max=24h
+training@hashicorp: command not found
+training@hashicorp > Success! Data written to: postgresql/config/lease
+Success!: command not found
+training@hashicorp > training@hashicorp > vault read postgresql/config/lease
+training@hashicorp: command not found
+training@hashicorp > Key        Value
+No command 'Key' found, did you mean:
+ Command 'key' from package 'donkey' (universe)
+Key: command not found
+training@hashicorp > ---        -----
+---: command not found
+training@hashicorp > lease      1h0m0s
+No command 'lease' found, did you mean:
+ Command 'leave' from package 'leave' (universe)
+lease: command not found
+training@hashicorp > lease_max  24h0m0s
+lease_max: command not found
+training@hashicorp > 
+training@hashicorp > training@hashicorp > cd /workstation/vault/
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > ll
+training@hashicorp: command not found
+training@hashicorp > total 28
+The program 'total' is currently not installed. You can install it by typing:
+sudo apt-get install radiance
+training@hashicorp > drwxr-xr-x 2 training training 4096 May  3 17:00 ./
+drwxr-xr-x: command not found
+training@hashicorp > drwxr-xr-x 5 root     root     4096 May  2 03:05 ../
+drwxr-xr-x: command not found
+training@hashicorp > -rw-r--r-- 1 training training  185 May  2 03:05 app.rb
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  289 May  2 03:05 config.hcl
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  146 May  2 03:05 config.yml.tpl
+-rw-r--r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training   33 May  3 17:00 pwd.txt
+-rw-rw-r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  147 May  2 03:05 readonly.sql
+-rw-r--r--: command not found
+training@hashicorp > training@hashicorp > vi readonly.sql
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > vault read postgresql/config/readonly sql=@readonly.sql
+training@hashicorp: command not found
+training@hashicorp > read expects one argument
+------------------------+------------------------------------------------+-----------
+ postgres                                   | Superuser, Create role, Create DB, Replication | {}
+ token-b8e7c9f5-704a-53c6-db7f-6c9249553250 | Password valid until 2017-05-03 19:19:06+00    | {}
+ token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45 | Password valid until 2017-05-03 19:19:47+00    | {}
+
+postgres > date
+postgres-#
+training@hashicorp > date
+Wed May  3 18:22:24 UTC 2017
+training@hashicorp > vault renew postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2
+Key              Value
+---              -----
+lease_id         postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2
+lease_duration   1h0m0s
+lease_renewable  true
+
+training@hashicorp > psql -U postgretraining@hashicorp >                       to verify the Vault server SSL certificate. If both
+to: command not found
+training@hashicorp >                           -ca-cert and -ca-path are specified, -ca-cert is used.
+-ca-cert: command not found
+training@hashicorp >                           Overrides the VAULT_CAPATH environment variable if set.
+Overrides: command not found
+training@hashicorp > 
+training@hashicorp >   -client-cert=path       Path to a PEM encoded client certificate for TLS
+-client-cert=path: command not found
+training@hashicorp >                           authentication to the Vault server. Must also specify
+authentication: command not found
+training@hashicorp >                           -client-key. Overrides the VAULT_CLIENT_CERT
+-client-key.: command not found
+training@hashicorp >                           environment variable if set.
+environment: command not found
+training@hashicorp > 
+training@hashicorp >   -client-key=path        Path to an unencrypted PEM encoded private key
+-client-key=path: command not found
+training@hashicorp >                           matching the client certificate from -client-cert.
+matching: command not found
+training@hashicorp >                           Overrides the VAULT_CLIENT_KEY environment variable
+Overrides: command not found
+training@hashicorp >                           if set.
+> 
+>   -tls-skip-verify        Do not verify TLS certificate. This is highly
+>                           not recommended. Verification will also be skipped
+>                           if VAULT_SKIP_VERIFY is set.
+> 
+>   -wrap-ttl=""            Indicates that the response should be wrapped in a
+>                           cubbyhole token with the requested TTL. The response
+>                           can be fetched by calling the "sys/wrapping/unwrap"
+>                           endpoint, passing in the wrappping token's ID. This
+>                           is a numeric string with an optional suffix
+>                           "s", "m", or "h"; if no suffix is specified it will
+>                           be parsed as seconds. May also be specified via
+>                           VAULT_WRAP_TTL.
+> 
+> Read Options:
+> 
+>   -format=table           The format for output. By default it is a whitespace-
+>                           delimited table. This can also be json or yaml.
+> 
+>   -field=field            If included, the raw value of the specified field
+>                           will be output raw to stdout.
+> training@hashicorp > vault write postgresql/config/readonly sql=@readonly.sql
+> Error writing data to postgresql/config/readonly: Error making API request.
+> 
+> URL: PUT http://127.0.0.1:8200/v1/postgresql/config/readonly
+> Code: 404. Errors:
+> 
+> * 1 error occurred:
+> 
+> * unsupported path
+> training@hashicorp > vault write postgresql/roles/readonly sql=@readonly.sql
+> Success! Data written to: postgresql/roles/readonly
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp > vault read postgresql/creds/readonly
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         5e72f3c0-48fe-e393-9f4e-1131d660ca2e
+> username         token-b8e7c9f5-704a-53c6-db7f-6c9249553250
+> 
+> training@hashicorp > vault read postgresql/creds/readonly
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         7e3b1e12-b1de-21c6-2017-9201b1ecc784
+> username         token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45
+> 
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+>                                               List of roles
+>                  Role name                  |                   Attributes                   | Member of
+> --------------------------------------------+------------------------------------------------+-----------
+>  postgres                                   | Superuser, Create role, Create DB, Replication | {}
+>  token-b8e7c9f5-704a-53c6-db7f-6c9249553250 | Password valid until 2017-05-03 19:19:06+00    | {}
+>  token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45 | Password valid until 2017-05-03 19:19:47+00    | {}
+> 
+> postgres > date
+> postgres-#
+> training@hashicorp > date
+> Wed May  3 18:22:24 UTC 2017
+> training@hashicorp > vault renew postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/93230816-f675-4050-9e90-e5347bb4cae2
+> lease_duration   1h0m0s
+> lease_renewable  true
+> 
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+>                                               List of roles
+>                  Role name                  |                   Attributes                   | Member of
+> --------------------------------------------+------------------------------------------------+-----------
+>  postgres                                   | Superuser, Create role, Create DB, Replication | {}
+>  token-b8e7c9f5-704a-53c6-db7f-6c9249553250 | Password valid until 2017-05-03 19:19:06+00    | {}
+>  token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45 | Password valid until 2017-05-03 19:24:55+00    | {}
+> 
+> postgres >
+> training@hashicorp > vault renew postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2
+> lease_duration   1h0m0s
+> lease_renewable  true
+> 
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+>                                               List of roles
+>                  Role name                  |                   Attributes                   | Member of
+> --------------------------------------------+------------------------------------------------+-----------
+>  postgres                                   | Superuser, Create role, Create DB, Replication | {}
+>  token-b8e7c9f5-704a-53c6-db7f-6c9249553250 | Password valid until 2017-05-03 19:26:07+00    | {}
+>  token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45 | Password valid until 2017-05-03 19:24:55+00    | {}
+> 
+> postgres >
+> training@hashicorp > vault revoke postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2
+> Success! Revoked the secret with ID 'postgresql/creds/readonly/f6f4d962-5935-6a3a-1ab4-f1c1a016eec2', if it existed.
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+>                                               List of roles
+>                  Role name                  |                   Attributes                   | Member of
+> --------------------------------------------+------------------------------------------------+-----------
+>  postgres                                   | Superuser, Create role, Create DB, Replication | {}
+>  token-f5f6f43d-7ea7-31a4-21a5-859bd5265d45 | Password valid until 2017-05-03 19:24:55+00    | {}
+> 
+> postgres >
+> training@hashicorp > for i in {1..20}; do vault read postgresql/creds/readonly; done
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/faf5006f-bce3-df58-3e46-b5c1bd515d11
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         58f9bb31-f7fc-44f2-1f74-a4b286fb5028
+> username         token-d0ca1790-6ca6-b45c-6d65-2b4822ee84c2
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/7f20927e-270d-bd61-eaf4-e54ac2474c1d
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         be61ed22-bab4-0022-e6da-adf9fae15117
+> username         token-c4ee81e6-2f9a-4816-d9ff-0ec1476be79f
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/591d43aa-9466-e8d8-0308-5fd748e5058e
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         26582572-fd46-3e84-84f3-9cdd3efb2b72
+> username         token-5f7e3c1a-6a49-9623-70e5-41251a50ce02
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/d17aa898-8957-990e-3c6e-37c6f0d70c50
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         dd5cfef1-5ed8-cf32-b45d-a4ec1c0ba5ae
+> username         token-72879332-fcda-cea0-ec34-5c988167dd94
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/48d1eb02-567a-0eb3-d57e-3fb8a4820b00
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         3870baeb-edf1-188b-5465-804cb17a6776
+> username         token-5916cb4e-2bd1-5e22-862f-343ed9d6b539
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/7306f59f-e45f-9033-acab-38dc6acee016
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         40db9d7d-e3e3-766e-2d94-3d5780fdf5aa
+> username         token-7bc7e9b3-09f5-5b15-8dd1-928aa12c914a
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/442443d3-9b21-84eb-9294-4c4516cb4494
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         cf2337d2-9abe-f270-fa44-c6033bcf25ed
+> username         token-e3f06c22-215f-a7ed-ed9d-272baaa776d4
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/1fd0c5c9-ac0a-88b2-2ad7-974d7b682e3a
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         32cf3222-383c-05d1-ac85-395ece5f3380
+> username         token-340348c1-0cae-c551-e4da-7a3b4fe2e8a9
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/c3fee8cd-eee2-d268-107a-f77119a50f5e
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         0e56a42a-4f5e-7f01-77d6-755e95c949ce
+> username         token-2af0e521-9e62-db8b-17b3-d3b6f4ce887f
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/3e5b934a-04e7-e36b-3521-b942dc93f43e
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         41aac7bc-6cff-50dd-522a-8800f31dc1bd
+> username         token-a1b138be-51e7-5852-31e3-f00929ac021e
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/d809cd14-319d-f486-8413-2c8c31945f08
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         33d6ec98-5824-d707-6a55-1255fa832cfb
+> username         token-99098f29-07d3-35a3-037c-540e3b5e978f
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/965facb0-4381-5106-e711-f2c6059ca759
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         b8d5389a-4699-a103-b320-310d423235af
+> username         token-1366559c-b02f-a015-b53b-7954382e1e24
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/5afaee9b-e3fe-e517-64a3-6bc66ba5b88f
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         b9ece237-3a5e-7f36-7d9f-4af6f31d24c0
+> username         token-3df6feb8-e3d2-608d-b9a8-e77454ca11d0
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/29643a5c-2a6c-0795-a405-5435db846a5b
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         6d6fb033-e653-7c85-eddc-f2778a612751
+> username         token-2948673e-1c8d-78ca-95f4-6819b4da0b9c
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/7fdcc8e4-a5d5-e0b3-63fd-123877f9eb4f
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         f182ccdb-ff80-6b2e-2e97-fa60a24f5351
+> username         token-ffc80404-02a0-55b8-5370-5d69cfc4f6fb
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/f80f2c8a-ab5e-01f7-9391-fff40086a9f1
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         0cba068f-5ff9-a6a0-3164-2649a9b987db
+> username         token-26e96be9-779a-c531-5ae6-025223238d79
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/3093cb0c-7d15-2f84-de5a-9feeedddd7a4
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         6649b143-0de8-dd94-da4b-1b1f5f29e468
+> username         token-de5e11af-5f19-6e36-9be8-d79f884977e2
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/b8898331-f969-6d28-b5b1-65b26f579df9
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         f19160cf-46ee-d4a1-6aa6-8cf2934075cd
+> username         token-d17c4873-dfd3-ea18-50f5-f6cfea2feaa5
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/0c461eca-12bb-fffe-06cd-74e5632ac49c
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         66a77175-4c4e-bb7e-1e50-dbc20c5f81be
+> username         token-f2bae7b4-4048-c2b1-65ac-4f7faf93249a
+> 
+> Key              Value
+> ---              -----
+> lease_id         postgresql/creds/readonly/1c6bc199-c331-2042-d335-ab0324ae998d
+> lease_duration   1h0m0s
+> lease_renewable  true
+> password         b0195932-42bb-d650-6703-c3e388902b4d
+> username         token-8018cddc-4e0f-1718-a519-5e35d5a963ef
+> 
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+> postgres >
+> training@hashicorp > vault revoke -prefix postgresql/creds
+> Success! Revoked the secret with ID 'postgresql/creds', if it existed.
+> training@hashicorp > psql -U postgres
+> Welcome to PostgreSQL for HashiCorp training!
+> Type \q to exit.
+> 
+> postgres > \du
+>                              List of roles
+>  Role name |                   Attributes                   | Member of
+> -----------+------------------------------------------------+-----------
+>  postgres  | Superuser, Create role, Create DB, Replication | {}
+> 
+> postgres >
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp > echo "****************** LEASES ***********************"
+> ****************** LEASES ***********************
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp >
+> training@hashicorp > packet_write_wait: Connection to 54.175.180.102 port 22: Broken pipe
+> Franciscos-MacBook-Pro:~ xfrarod$ ssh training@54.175.180.102
+> training@54.175.180.102's password:
+> Welcome to HashiCorp official training! We are very excited to
+> have you on board for this event. This is your official training
+> instance. Almost all commands and operations will happen on this
+> workstation.
+> 
+> Your official training animal identity is:
+> 
+>     testing-rat
+> 
+> Please do not lose this identity as it will be important in
+> completing this training course. Have a great day!
+> training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > script vault2.log
+w-r-- 1 training training    66 May  3 17:40 base.hcl
+-rw------- 1 training training  9435 May  3 19:13 .bash_history
+-rw-r--r-- 1 training training   220 Apr  9  2014 .bash_logout
+-rw-r--r-- 1 training training  3666 May  2 03:04 .bashrc
+drwxrwxr-x 2 training training  4096 May  2 03:04 .cache/
+-rw-rw-r-- 1 training training    57 May  3 17:58 exercise.hcl
+-rw-rw-r-- 1 training training    16 May  2 22:53 exercise.tpl
+-rw-rw-r-- 1 training training   129 May  2 03:04 .gitconfig
+-rw-r--r-- 1 training training     4 May  2 22:53 out.txt
+-rw-r--r-- 1 training training   675 Apr  9  2014 .profile
+-rw------- 1 training training    24 May  3 18:36 .psql_history
+-rw-r--r-- 1 training training   146 May  2 03:training@hashicorp: command not found
+training@hashicorp > Script started, file is vault2.log
+No command 'Script' found, did you mean:
+ Command 'script' from package 'bsdutils' (main)
+Script: command not found
+training@hashicorp > training@hashicorp > vault auth -methods
+4096 May  2 03:04 .ssh/
+-rw-rw-r-training@hashicorp: command not found
+training@hashicorp > Path    Type   Default TTL  Max TTL  Replication Behavior  Description
+Path: command not found
+training@hashicorp > token/  token  system       system   replicated            token based credentials
+bash: token/: No such file or directory
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault read sys/auth
+training@hashicorp: command not found
+training@hashicorp > Key     Value
+No command 'Key' found, did you mean:
+ Command 'key' from package 'donkey' (universe)
+Key: command not found
+training@hashicorp > ---     -----
+---: command not found
+training@hashicorp > token/  map[config:map[default_lease_ttl:0 max_lease_ttl:0] description:token based credentials local:false type:token]
+bash: token/: No such file or directory
+training@hashicorp > 
+training@hashicorp > training@hashicorp > vault auth-enable userpass
+training@hashicorp: command not found
+training@hashicorp > Successfully enabled 'userpass' at 'userpass'!
+Successfully: command not found
+training@hashicorp > training@hashicorp > vault auth -methods
+training@hashicorp: command not found
+training@hashicorp > Path       Type      Default TTL  Max TTL  Replication Behavior  Description
+Path: command not found
+training@hashicorp > token/     token     system       system   replicated            token based credentials
+bash: token/: No such file or directory
+training@hashicorp > userpass/  userpass  system       system   replicated
+bash: userpass/: No such file or directory
+training@hashicorp > training@hashicorp > vault mount userpass
+training@hashicorp: command not found
+training@hashicorp > Mount error: Error making API request.
+No command 'Mount' found, did you mean:
+ Command 'mount' from package 'mount' (main)
+Mount: command not found
+training@hashicorp > 
+training@hashicorp > URL: POST http://127.0.0.1:8200/v1/sys/mounts/userpass
+URL:: command not found
+training@hashicorp > Code: 400. Errors:
+Code:: command not found
+training@hashicorp > 
+training@hashicorp > * unknown backend type: userpass
+base.hcl: command not found
+training@hashicorp > training@hashicorp > vault mount training-userpass
+training@hashicorp: command not found
+training@hashicorp > Mount error: Error making API request.
+No command 'Mount' found, did you mean:
+ Command 'mount' from package 'mount' (main)
+Mount: command not found
+training@hashicorp > 
+training@hashicorp > URL: POST http://127.0.0.1:8200/v1/sys/mounts/training-userpass
+URL:: command not found
+training@hashicorp > Code: 400. Errors:
+Code:: command not found
+training@hashicorp > 
+training@hashicorp > * unknown backend type: training-userpass
+base.hcl: command not found
+training@hashicorp > training@hashicorp > vault mount userpass/training-userpass
+training@hashicorp: command not found
+training@hashicorp > Mount error: Error making API request.
+No command 'Mount' found, did you mean:
+ Command 'mount' from package 'mount' (main)
+Mount: command not found
+training@hashicorp > 
+training@hashicorp > URL: POST http://127.0.0.1:8200/v1/sys/mounts/userpass/training-userpass
+URL:: command not found
+training@hashicorp > Code: 400. Errors:
+Code:: command not found
+training@hashicorp > 
+training@hashicorp > * unknown backend type: userpass/training-userpass
+base.hcl: command not found
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > vault auth-enable -path=training-userpass userpass
+training@hashicorp: command not found
+training@hashicorp > Successfully enabled 'userpass' at 'training-userpass'!
+Successfully: command not found
+training@hashicorp > training@hashicorp > vault write auth/userpass/users/sethvargo password=training policies=base
+training@hashicorp: command not found
+training@hashicorp > Success! Data written to: auth/userpass/users/sethvargo
+Success!: command not found
+training@hashicorp > training@hashicorp > vault read auth/userpass/users/sethvargo
+training@hashicorp: command not found
+training@hashicorp > Key       Value
+No command 'Key' found, did you mean:
+ Command 'key' from package 'donkey' (universe)
+Key: command not found
+training@hashicorp > ---       -----
+---: command not found
+training@hashicorp > max_ttl   0
+max_ttl: command not found
+training@hashicorp > policies  base,default
+policies: command not found
+training@hashicorp > ttl       0
+No command 'ttl' found, did you mean:
+ Command 'tty' from package 'coreutils' (main)
+ Command 'ttm' from package 'ttm' (universe)
+ Command 'ttb' from package 'ttb' (universe)
+ Command 'tel' from package 'orville-write' (universe)
+ Command 'ttx' from package 'fonttools' (universe)
+ Command 'tt' from package 'treetop' (universe)
+ Command 'tth' from package 'tth' (universe)
+ Command 'tbl' from package 'groff-base' (main)
+ Command 'tdl' from package 'tdl' (universe)
+ Command 'tjl' from package 'pvm-examples' (universe)
+ Command 'ttt' from package 'ttt' (universe)
+ Command 'ttv' from package 'ttv' (universe)
+ttl: command not found
+training@hashicorp > 
+training@hashicorp > training@hashicorp > vault write auth/userpass/users/sethvargo password=training policies=root
+training@hashicorp: command not found
+training@hashicorp > Success! Data written to: auth/userpass/users/sethvargo
+Success!: command not found
+training@hashicorp > training@hashicorp > vault read auth/userpass/users/sethvargo
+training@hashicorp: command not found
+training@hashicorp > Key       Value
+No command 'Key' found, did you mean:
+ Command 'key' from package 'donkey' (universe)
+Key: command not found
+training@hashicorp > ---       -----
+---: command not found
+training@hashicorp > max_ttl   0
+max_ttl: command not found
+training@hashicorp > policies  root
+policies: command not found
+training@hashicorp > ttl       0
+No command 'ttl' found, did you mean:
+ Command 'ttm' from package 'ttm' (universe)
+ Command 'tbl' from package 'groff-base' (main)
+ Command 'tty' from package 'coreutils' (main)
+ Command 'tjl' from package 'pvm-examples' (universe)
+ Command 'ttb' from package 'ttb' (universe)
+ Command 'tel' from package 'orville-write' (universe)
+ Command 'tth' from package 'tth' (universe)
+ Command 'ttv' from package 'ttv' (universe)
+ Command 'ttx' from package 'fonttools' (universe)
+ Command 'tt' from package 'treetop' (universe)
+ Command 'tdl' from package 'tdl' (universe)
+ Command 'ttt' from package 'ttt' (universe)
+ttl: command not found
+training@hashicorp > 
+training@hashicorp > training@hashicorp > cd /workstation/vault/
+training@hashicorp: command not found
+training@hashicorp > training@hashicorp > ll
+training@hashicorp: command not found
+training@hashicorp > total 28
+The program 'total' is currently not installed. You can install it by typing:
+sudo apt-get install radiance
+training@hashicorp > drwxr-xr-x 2 training training 4096 May  3 18:16 ./
+drwxr-xr-x: command not found
+training@hashicorp > drwxr-xr-x 5 root     root     4096 May  2 03:05 ../
+drwxr-xr-x: command not found
+training@hashicorp > -rw-r--r-- 1 training training  185 May  2 03:05 app.rb
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  289 May  2 03:05 config.hcl
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  146 May  2 03:05 config.yml.tpl
+-rw-r--r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training   33 May  3 17:00 pwd.txt
+-rw-rw-r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  147 May  2 03:05 readonly.sql
+-rw-r--r--: command not found
+training@hashicorp > training@hashicorp > cat config.hcl
+training@hashicorp: command not found
+training@hashicorp > # Use the file storage - this will write encrypted data to disk.
+training@hashicorp > storage "file" {
+storage: command not found
+training@hashicorp >   path = "/workstation/vault/data"
+No command 'path' found, did you mean:
+ Command 'patch' from package 'patch' (main)
+ Command 'mpath' from package 'libmodule-path-perl' (universe)
+ Command 'pat' from package 'dist' (universe)
+ Command 'xpath' from package 'libxml-xpath-perl' (universe)
+path: command not found
+training@hashicorp > }
+bash: syntax error near unexpected token `}'
+training@hashicorp > 
+training@hashicorp > ▽
+▽: command not found
+training@hashicorp > path "postgresql/roles/readonly/*" {
+No command 'path' found, did you mean:
+ Command 'pat' from package 'dist' (universe)
+ Command 'xpath' from package 'libxml-xpath-perl' (universe)
+ Command 'patch' from package 'patch' (main)
+ Command 'mpath' from package 'libmodule-path-perl' (universe)
+path: command not found
+training@hashicorp > 
+training@hashicorp > # Listen on a different port (8201), which will allow us to run multiple
+training@hashicorp > # Vault's simultaneously.
+training@hashicorp > listener "tcp" {
+listener: command not found
+training@hashicorp >   address     = "127.0.0.1:8201"
+No command 'address' found, did you mean:
+ Command 'naddress' from package 'util-vserver' (universe)
+address: command not found
+training@hashicorp >   tls_disable = 1
+tls_disable: command not found
+training@hashicorp > }
+bash: syntax error near unexpected token `}'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp >
+bash: syntax error near unexpected token `newline'
+training@hashicorp > training@hashicorp > pwd
+training@hashicorp: command not found
+training@hashicorp > /workstation/vault
+bash: /workstation/vault: Is a directory
+training@hashicorp > training@hashicorp > cd -
+training@hashicorp: command not found
+training@hashicorp > /home/training
+bash: /home/training: Is a directory
+training@hashicorp > training@hashicorp > ll
+training@hashicorp: command not found
+training@hashicorp > total 192
+The program 'total' is currently not installed. You can install it by typing:
+sudo apt-get install radiance
+training@hashicorp > drwxr-xr-x 4 training training  4096 May  3 19:48 ./
+drwxr-xr-x: command not found
+training@hashicorp > 
+training@hashicorp > ▽
+▽: command not found
+training@hashicorp > path "postgresql/userpass/readonly/*" {
+No command 'path' found, did you mean:
+ Command 'xpath' from package 'libxml-xpath-perl' (universe)
+ Command 'pat' from package 'dist' (universe)
+ Command 'patch' from package 'patch' (main)
+ Command 'mpath' from package 'libmodule-path-perl' (universe)
+path: command not found
+training@hashicorp > drwxr-xr-x 4 root     root      4096 May  2 03:04 ../
+drwxr-xr-x: command not found
+training@hashicorp > -rw-rw-r-- 1 training training    66 May  3 17:40 base.hcl
+-rw-rw-r--: command not found
+training@hashicorp > -rw------- 1 training training  9435 May  3 19:13 .bash_history
+-rw-------: command not found
+training@hashicorp > -rw-r--r-- 1 training training   220 Apr  9  2014 .bash_logout
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training  3666 May  2 03:04 .bashrc
+-rw-r--r--: command not found
+training@hashicorp > drwxrwxr-x 2 training training  4096 May  2 03:04 .cache/
+drwxrwxr-x: command not found
+training@hashicorp > -rw-rw-r-- 1 training training    57 May  3 17:58 exercise.hcl
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training    16 May  2 22:53 exercise.tpl
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training   129 May  2 03:04 .gitconfig
+-rw-rw-r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training     4 May  2 22:53 out.txt
+-rw-r--r--: command not found
+training@hashicorp > -rw-r--r-- 1 training training   675 Apr  9  2014 .profile
+-rw-r--r--: command not found
+training@hashicorp > -rw------- 1 training training    24 May  3 18:36 .psql_history
+-rw-------: command not found
+training@hashicorp > -rw-r--r-- 1 training training   146 May  2 03:05 .psqlrc
+-rw-r--r--: command not found
+training@hashicorp > drwx------ 2 training training  4096 May  2 03:04 .ssh/
+drwx------: command not found
+training@hashicorp > -rw-rw-r-- 1 training training 81920 May  3 18:36 vault1.log
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training  4096 May  3 19:54 vault2.log
+-rw-rw-r--: command not found
+training@hashicorp > -rw-rw-r-- 1 training training 20480 May  3 17:06 vault.log
+-rw-rw-r--: command not foun

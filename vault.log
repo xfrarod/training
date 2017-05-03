@@ -1,0 +1,253 @@
+Script started on Wed 03 May 2017 04:48:13 PM UTC
+training@hashicorp > cd /workstation/l[Kvault/
+training@hashicorp > ll[K[Kvault status
+Sealed: false
+Key Shares: 1
+Key Threshold: 1
+Unseal Progress: 0
+Unseal Nonce: 
+Version: 0.7.0
+Cluster Name: vault-cluster-a006343d
+Cluster ID: eb604bf8-81bd-ee65-d768-eb32e12a9787
+
+High-Availability Enabled: false
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > read secret/c[Kvault
+bash: read: `secret/vault': not a valid identifier
+training@hashicorp > read secret/vault[1@v[1@a[1@u[1@l[1@t[1@ 
+Error reading secret/vault: Error making API request.
+
+URL: GET http://127.0.0.1:8200/v1/secret/vault
+Code: 400. Errors:
+
+* missing client token
+training@hashicorp > vault auth root
+Successfully authenticated! You are now logged in.
+token: root
+token_duration: 0
+token_policies: [root]
+training@hashicorp > vault auth rootread secret/vault
+No value found at secret/vault
+training@hashicorp > vault read secret/vault[K[K[K[K[Ktraining
+No value found at secret/training
+training@hashicorp > vault write secret/training v[Kname=francisco food=""c"h"i"c"k"e"n" "f"i"n"g"e"r"s"
+Success! Data written to: secret/training
+training@hashicorp > vault write secret/training name=francisco food="chicken fingers"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[39Pread secret/training
+Key             	Value
+---             	-----
+refresh_interval	768h0m0s
+food            	chicken fingers
+name            	francisco
+
+training@hashicorp > vault read -field=name secret/training
+franciscotraining@hashicorp > vault write /[Ksecret/gf[Kf[Kf[K[Kfoo a=b
+Success! Data written to: secret/foo
+training@hashicorp > echo "mypass[K[K[K[Ksupersecretpassword" | base 64 [K[K[K[K64 > pwd.txt
+training@hashicorp > echo "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=b[1P a=b[1P a=b[1P a=bf a=bc a=bo a=bc a=br a=be a=bd a=b[C[C[C[C[K[K[Kpwd= [K@pwd.txt
+Success! Data written to: secret/fcocred
+training@hashicorp > vault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pvault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault read
+read expects one argument
+Usage: vault read [options] path
+
+  Read data from Vault.
+
+  Reads data at the given path from Vault. This can be used to read
+  secrets and configuration as well as generate dynamic values from
+  materialized backends. Please reference the documentation for the
+  backends in use to determine key structure.
+
+General Options:
+
+  -address=addr           The address of the Vault server.
+                          Overrides the VAULT_ADDR environment variable if set.
+
+  -ca-cert=path           Path to a PEM encoded CA cert file to use to
+                          verify the Vault server SSL certificate.
+                          Overrides the VAULT_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert files
+                          to verify the Vault server SSL certificate. If both
+                          -ca-cert and -ca-path are specified, -ca-cert is used.
+                          Overrides the VAULT_CAPATH environment variable if set.
+
+  -client-cert=path       Path to a PEM encoded client certificate for TLS
+                          authentication to the Vault server. Must also specify
+                          -client-key. Overrides the VAULT_CLIENT_CERT
+                          environment variable if set.
+
+  -client-key=path        Path to an unencrypted PEM encoded private key
+                          matching the client certificate from -client-cert.
+                          Overrides the VAULT_CLIENT_KEY environment variable
+                          if set.
+
+  -tls-skip-verify        Do not verify TLS certificate. This is highly
+                          not recommended. Verification will also be skipped
+                          if VAULT_SKIP_VERIFY is set.
+
+  -wrap-ttl=""            Indicates that the response should be wrapped in a
+                          cubbyhole token with the requested TTL. The response
+                          can be fetched by calling the "sys/wrapping/unwrap"
+                          endpoint, passing in the wrappping token's ID. This
+                          is a numeric string with an optional suffix
+                          "s", "m", or "h"; if no suffix is specified it will
+                          be parsed as seconds. May also be specified via
+                          VAULT_WRAP_TTL.
+
+Read Options:
+
+  -format=table           The format for output. By default it is a whitespace-
+                          delimited table. This can also be json or yaml.
+
+  -field=field            If included, the raw value of the specified field
+                          will be output raw to stdout.
+training@hashicorp > vault readwrite secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=bread -field=name secret/training[12Psecret/trainingwrite secret/training name=francisco food="chicken fingers"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[39Pread secret/training[3Pvault[8Pauth rootread secret/vault[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5Pvault statuscd /workstation/vault/[10Pvi ex.nomad html_content.tpl[7Pex.nomad [3Pdocker psvi ex.nomad curl 10.1.2.134:58025nomad alloc-status -stats 2ba86b41[Kcurl 10.1.2.134:58025nomad alloc-status 2ba86b41status web-nginx-testing-rat[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[14Phistory | grep nomad[8Pnomad statusrun ex.nomad [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kvault list secret
+Keys
+----
+fcocred
+foo
+training
+
+training@hashicorp > vault read fcocred
+No value found at fcocred
+training@hashicorp > vault read fcocredsfcocredefcocredcfcocredrfcocredefcocredtfcocred/fcocred
+Key             	Value
+---             	-----
+refresh_interval	768h0m0s
+pwd             	bXlzdXBlcnNlY3JldHBhc3N3b3JkCg==
+
+training@hashicorp > vault delte[K[Kete secret/fcocred
+Success! Deleted 'secret/fcocred' if it existed.
+training@hashicorp > vault delete secret/fcocred[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+No value found at secret/fcocred
+training@hashicorp > vault read secret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pfcocred[1Plist secret[7Preadwrite secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=bread -field=name secret/training[12Psecret/training-field=name secret/training[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Pwrite secret/foo a=b[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pvault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cread[Klist secretread fcocredsecret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault read secret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pfcocred[1Plist secret[7Preadwrite secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=bread -field=name secret/training[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Pwrite secret/foo a=b[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pvault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cread[Klist secretread fcocredsecret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault help
+usage: vault [-version] [-help] <command> [args]
+
+Common commands:
+    delete           Delete operation on secrets in Vault
+    path-help        Look up the help for a path
+    read             Read data or secrets from Vault
+    renew            Renew the lease of a secret
+    revoke           Revoke a secret.
+    server           Start a Vault server
+    status           Outputs status of whether Vault is sealed and if HA mode is enabled
+    unwrap           Unwrap a wrapped secret
+    write            Write secrets or configuration into Vault
+
+All other commands:
+    audit-disable    Disable an audit backend
+    audit-enable     Enable an audit backend
+    audit-list       Lists enabled audit backends in Vault
+    auth             Prints information about how to authenticate with Vault
+    auth-disable     Disable an auth provider
+    auth-enable      Enable a new auth provider
+    capabilities     Fetch the capabilities of a token on a given path
+    generate-root    Generates a new root token
+    init             Initialize a new Vault server
+    key-status       Provides information about the active encryption key
+    list             List data or secrets in Vault
+    mount            Mount a logical backend
+    mount-tune       Tune mount configuration parameters
+    mounts           Lists mounted backends in Vault
+    policies         List the policies on the server
+    policy-delete    Delete a policy from the server
+    policy-write     Write a policy to the server
+    rekey            Rekeys Vault to generate new unseal keys
+    remount          Remount a secret backend to a new path
+    rotate           Rotates the backend encryption key used to persist data
+    seal             Seals the vault server
+    ssh              Initiate a SSH session
+    step-down        Force the Vault node to give up active duty
+    token-create     Create a new auth token
+    token-lookup     Display information about the specified token
+    token-renew      Renew an auth token if there is an associated lease
+    token-revoke     Revoke one or more auth tokens
+    unmount          Unmount a secret backend
+    unseal           Unseals the vault server
+    version          Prints the Vault version
+
+training@hashicorp > vault read -h
+Usage: vault read [options] path
+
+  Read data from Vault.
+
+  Reads data at the given path from Vault. This can be used to read
+  secrets and configuration as well as generate dynamic values from
+  materialized backends. Please reference the documentation for the
+  backends in use to determine key structure.
+
+General Options:
+
+  -address=addr           The address of the Vault server.
+                          Overrides the VAULT_ADDR environment variable if set.
+
+  -ca-cert=path           Path to a PEM encoded CA cert file to use to
+                          verify the Vault server SSL certificate.
+                          Overrides the VAULT_CACERT environment variable if set.
+
+  -ca-path=path           Path to a directory of PEM encoded CA cert files
+                          to verify the Vault server SSL certificate. If both
+                          -ca-cert and -ca-path are specified, -ca-cert is used.
+                          Overrides the VAULT_CAPATH environment variable if set.
+
+  -client-cert=path       Path to a PEM encoded client certificate for TLS
+                          authentication to the Vault server. Must also specify
+                          -client-key. Overrides the VAULT_CLIENT_CERT
+                          environment variable if set.
+
+  -client-key=path        Path to an unencrypted PEM encoded private key
+                          matching the client certificate from -client-cert.
+                          Overrides the VAULT_CLIENT_KEY environment variable
+                          if set.
+
+  -tls-skip-verify        Do not verify TLS certificate. This is highly
+                          not recommended. Verification will also be skipped
+                          if VAULT_SKIP_VERIFY is set.
+
+  -wrap-ttl=""            Indicates that the response should be wrapped in a
+                          cubbyhole token with the requested TTL. The response
+                          can be fetched by calling the "sys/wrapping/unwrap"
+                          endpoint, passing in the wrappping token's ID. This
+                          is a numeric string with an optional suffix
+                          "s", "m", or "h"; if no suffix is specified it will
+                          be parsed as seconds. May also be specified via
+                          VAULT_WRAP_TTL.
+
+Read Options:
+
+  -format=table           The format for output. By default it is a whitespace-
+                          delimited table. This can also be json or yaml.
+
+  -field=field            If included, the raw value of the specified field
+                          will be output raw to stdout.
+training@hashicorp > vault path-help secret/
+## DESCRIPTION
+
+The generic backend reads and writes arbitrary secrets to the backend.
+The secrets are encrypted/decrypted by Vault: they are never stored
+unencrypted in the backend and the backend never has an opportunity to
+see the unencrypted value.
+
+TTLs can be set on a per-secret basis. These TTLs will be sent down
+when that secret is read, and it is assumed that some outside process will
+revoke and/or replace the secret at that path.
+
+## PATHS
+
+The following paths are supported by this backend. To view help for
+any of the paths below, use the help command with any route matching
+the path pattern. Note that depending on the policy of your auth token,
+you may or may not be able to access certain paths.
+
+    ^.*$
+        Pass-through secret storage to the storage backend, allowing you to
+        read/write arbitrary data into secret storage.
+training@hashicorp > vault path-help secret/[10Pread -h[3Phelpread secret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pfcocred[1Plist secretread fcocredsecret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chelp[Kread -hpath-help secret/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault path-help secret/[10Pread -h[3Phelpread secret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pfcocred[1Plist secret[7Preadwrite secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=b[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pvault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cread[Klist secretread fcocredsecret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chelp[Kread -hpath-help secret/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > 
+training@hashicorp > vault path-help secret/[10Pread -h[3Phelpread secret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pfcocred[1Plist secret[7Preadwrite secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21Pvault write secret/foo a=bread -field=name secret/training[12Psecret/trainingwrite secret/training name=francisco food="chicken fingers"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[39Pread secret/training[3Pvault[8Pauth rootread secret/vault[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5Pvault statuscd /workstation/vault/[10Pvi ex.nomad cd /workstation/vault/[10Pvault statusread secret/vault[6@vault [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pauth rootread secret/vaulttrainingwrite secret/training name=francisco food="chicken fingers"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[39Pread secret/training-field=name secret/training[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Pwrite secret/foo a=b[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cecho "mysupersecretpassword" | base64 > pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pvault write secret/fcocred pwd=@pwd.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cread[Klist secretread fcocredsecret/fcocred[2@delete[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2Pread[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chelp[Kread -hpath-help secret/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvault path-help cubbyhole/
+## DESCRIPTION
+
+The cubbyhole backend reads an
